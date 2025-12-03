@@ -511,6 +511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontViewGroup: {fileID: 1818676177}
   backViewGroup: {fileID: 192712111}
+  bossSprite: {fileID: 1058213349}
   facingBoss: 1
   toggleKey: 102
 --- !u!1 &937089235
@@ -757,11 +758,11 @@ Transform:
   m_GameObject: {fileID: 1058213348}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5661566, y: 2.221663, z: -0.048917625}
+  m_LocalPosition: {x: 0, y: 3.5, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1818676178}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1058213351
 MonoBehaviour:
@@ -959,7 +960,6 @@ Transform:
   m_Children:
   - {fileID: 1887148015}
   - {fileID: 937089236}
-  - {fileID: 1058213350}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1887148011
@@ -1113,3 +1113,4 @@ SceneRoots:
   - {fileID: 51917320}
   - {fileID: 1818676178}
   - {fileID: 192712112}
+  - {fileID: 1058213350}

@@ -8,8 +8,11 @@ public class PlayerViewSwitcher : MonoBehaviour
     public GameObject frontViewGroup;   // Facing the boss and your desk
     public GameObject backViewGroup;    // Facing the Furnace
 
+    [Header("Boss Visual Only")]
+    public SpriteRenderer bossSprite;  // The boss' sprite
+
     [Header("State")]
-    public bool facingBoss = true;      // Looking @ the boss
+    public bool facingBoss = true; // Looking @ the boss
 
     [Header("Input")]
     //Key to turn around
@@ -38,12 +41,24 @@ public class PlayerViewSwitcher : MonoBehaviour
     {
         facingBoss = faceBoss;
 
+        // Enables Front objects 
         if (frontViewGroup != null)
+        {
             frontViewGroup.SetActive(faceBoss);
+        }
 
+        // Enables Back objects 
         if (backViewGroup != null)
+        {
             backViewGroup.SetActive(!faceBoss);
+        }
 
-        Debug.Log(facingBoss ? "Facing Boss side." : "Facing Furnace side.");
+        // Boss is only visually hidden, not disabled
+        if (bossSprite != null)
+        {
+            bossSprite.enabled = faceBoss;
+        }
+
+        Debug.Log(facingBoss ? "Facing BOSS side." : "Facing FURNACE side.");
     }
 }
