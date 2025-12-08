@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerViewSwitcher : MonoBehaviour
 {
@@ -11,12 +12,28 @@ public class PlayerViewSwitcher : MonoBehaviour
     [Header("Boss Visual Only")]
     public SpriteRenderer bossSprite;  // The boss' sprite
 
+    [Header("Red Stack Visual Only")]
+    public SpriteRenderer redStackSprite;   // The red paper stack sprite
+    public TMP_Text redStackCountText;      // The "x1, x2, x3" UI text
+
     [Header("State")]
     public bool facingBoss = true; // Looking @ the boss
 
-    [Header("Input")]
-    //Key to turn around
-    public KeyCode toggleKey = KeyCode.F;
+    private void Awake()
+    {
+        // Force a known-good starting state BEFORE anything else runs
+        facingBoss = true;
+
+        if (frontViewGroup != null)
+        {
+            frontViewGroup.SetActive(true);
+        }
+
+        if (backViewGroup != null)
+        {
+            backViewGroup.SetActive(false);
+        }
+    }
 
     private void Start()
     {
@@ -24,12 +41,10 @@ public class PlayerViewSwitcher : MonoBehaviour
         SetFacingBoss(facingBoss);
     }
 
-    private void Update()
+    // Called from the UI Button
+    public void OnTurnButtonPressed()
     {
-        if (Input.GetKeyDown(toggleKey))
-        {
-            ToggleView();
-        }
+        ToggleView();
     }
 
     public void ToggleView()
@@ -57,6 +72,17 @@ public class PlayerViewSwitcher : MonoBehaviour
         if (bossSprite != null)
         {
             bossSprite.enabled = faceBoss;
+        }
+
+        // Red stack is only visually hidden, not disabled
+        if (redStackSprite != null)
+        {
+            redStackSprite.enabled = !faceBoss;
+        }
+
+        if (redStackCountText != null)
+        {
+            redStackCountText.enabled = !faceBoss;
         }
 
         Debug.Log(facingBoss ? "Facing BOSS side." : "Facing FURNACE side.");

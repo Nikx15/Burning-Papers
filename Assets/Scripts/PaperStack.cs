@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class PaperStack : MonoBehaviour
 {
-    public PaperManager manager;
+    public PaperManager paperManager;
 
     private void OnMouseDown()
     {
-        manager.ShowPaper();
+        if (paperManager != null)
+        {
+            Debug.Log("PaperStack clicked, calling ShowPaper().");
+            paperManager.ShowPaper();
+        }
+        else
+        {
+            Debug.LogWarning("PaperStack: paperManager is NOT assigned in the Inspector.");
+        }
     }
-    //When you click, a new paper is shown
 }
