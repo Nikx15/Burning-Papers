@@ -19,6 +19,10 @@ public class PlayerViewSwitcher : MonoBehaviour
     [Header("State")]
     public bool facingBoss = true; // Looking @ the boss
 
+    [Header("Furnace UI")]
+    public GameObject burnProgressSliderObject; // The whole Slider GameObject
+
+
     private void Awake()
     {
         // Force a known-good starting state BEFORE anything else runs
@@ -84,6 +88,13 @@ public class PlayerViewSwitcher : MonoBehaviour
         {
             redStackCountText.enabled = !faceBoss;
         }
+
+        // Burn progress bar is only visible when facing the furnace
+        if (burnProgressSliderObject != null)
+        {
+            burnProgressSliderObject.SetActive(!faceBoss);
+        }
+
 
         Debug.Log(facingBoss ? "Facing BOSS side." : "Facing FURNACE side.");
     }
